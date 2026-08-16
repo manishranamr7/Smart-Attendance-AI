@@ -48,8 +48,9 @@ export default function App() {
     }
   };
 
-  const resolvedCount = sessions.filter(s => s.status === 'conflict_resolved').length;
-  const pendingUsersCount = users.filter(u => u.status === 'PENDING').length;
+  const resolvedCount = (sessions || []).filter(s => s && s.status === 'conflict_resolved').length;
+  const pendingUsersCount = (users || []).filter(u => u && (u.status === 'PENDING' || u.status === 'pending')).length;
+
 
   const stats = {
     sessionsCount: sessions.length,

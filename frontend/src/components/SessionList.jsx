@@ -5,15 +5,24 @@ export default function SessionList({ sessions, loading }) {
   const [filterStatus, setFilterStatus] = useState('ALL');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredSessions = sessions.filter(session => {
-    const matchesStatus = filterStatus === 'ALL' || session.status.toUpperCase() === filterStatus;
-    const matchesSearch = session.userId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                          session.sessionId.toLowerCase().includes(searchQuery.toLowerCase());
+  const filteredSessions = (sessions || []).filter(session => {
+    if (!session) return false;
+
+    const userId = (session.userId || session.user_id || '').toString();
+    const sessionId = (session.sessionId || session.session_id || '').toString();
+    const status = (session.status || '').toString();
+
+    const matchesStatus = filterStatus === 'ALL' || status.toUpperCase() === filterStatus;
+    const query = searchQuery ? searchQuery.toLowerCase() : '';
+    const matchesSearch = !query ||
+                          userId.toLowerCase().includes(query) ||
+                          sessionId.toLowerCase().includes(query);
+
     return matchesStatus && matchesSearch;
   });
 
   const getStatusBadge = (status) => {
-    const s = status ? status.toLowerCase() : '';
+    const s = status ? status.toString().toLowerCase() : '';
     if (s === 'valid') {
       return <span className="badge badge-valid"><CheckCircle2 size={12} /> Valid</span>;
     }
@@ -25,7 +34,6 @@ export default function SessionList({ sessions, loading }) {
     }
     return <span className="badge badge-invalid"><XCircle size={12} /> Invalid</span>;
   };
-
 
   const formatDate = (isoString) => {
     if (!isoString) return <span style={{ color: 'var(--text-dim)', fontStyle: 'italic' }}>Pending</span>;
@@ -84,40 +92,48 @@ export default function SessionList({ sessions, loading }) {
         </div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '16px' }}>
-          {filteredSessions.map((session, idx) => (
-            <div key={idx} className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-              
-              {/* Card Header */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>
-                    {session.userId}
-                  </h3>
-                  <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan)' }}>
-                    {session.sessionId}
-                  </span>
-                </div>
-                {getStatusBadge(session.status)}
-              </div>
+          {filteredSessions.map((session, idx) => {
+            const displayUserId = session.userId || session.user_id || 'Unknown User';
+            const displaySessionId = session.sessionId || session.session_id || 'N/A';
+            const checkinTime = session.checkinTime || session.checkin_time;
+            const checkoutTime = session.checkoutTime || session.checkout_time;
 
-              {/* Timeline Info */}
-              <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem' }}>
-                  <Clock size={14} color="var(--emerald)" />
-                  <span style={{ color: 'var(--text-muted)' }}>Check-in:</span>
-                  <span style={{ fontWeight: 600 }}>{formatDate(session.checkinTime)}</span>
+            return (
+              <div key={idx} className="glass-panel" style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                
+                {/* Card Header */}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                  <div>
+                    <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-main)' }}>
+                      {displayUserId}
+                    </h3>
+                    <span style={{ fontSize: '0.75rem', fontFamily: 'var(--font-mono)', color: 'var(--cyan)' }}>
+                      {displaySessionId}
+                    </span>
+                  </div>
+                  {getStatusBadge(session.status)}
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem' }}>
-                  <Clock size={14} color="var(--rose)" />
-                  <span style={{ color: 'var(--text-muted)' }}>Checkout:</span>
-                  <span style={{ fontWeight: 600 }}>{formatDate(session.checkoutTime)}</span>
-                </div>
-              </div>
 
-            </div>
-          ))}
+                {/* Timeline Info */}
+                <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '10px', padding: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem' }}>
+                    <Clock size={14} color="var(--emerald)" />
+                    <span style={{ color: 'var(--text-muted)' }}>Check-in:</span>
+                    <span style={{ fontWeight: 600 }}>{formatDate(checkinTime)}</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem' }}>
+                    <Clock size={14} color="var(--rose)" />
+                    <span style={{ color: 'var(--text-muted)' }}>Checkout:</span>
+                    <span style={{ fontWeight: 600 }}>{formatDate(checkoutTime)}</span>
+                  </div>
+                </div>
+
+              </div>
+            );
+          })}
         </div>
       )}
+
     </div>
   );
 }
