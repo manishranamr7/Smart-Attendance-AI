@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_LATE_CHECKOUT",
+    "user_id": "USR_1004",
+    "source": "app",
+    "timestamp": "2026-08-16T17:30:00Z",
+    "action": "checkout",
+    "face_confidence": 0.88,
+    "session_id": "SESS_105",
+    "face_template": "FT_SARAHC_V1"
+  },
+  {
+    "event_id": "EVT_LATE_CHECKIN_ARRIVED_2HRS_LATER",
+    "user_id": "USR_1004",
+    "source": "camera",
+    "timestamp": "2026-08-16T08:30:00Z",
+    "action": "checkin",
+    "face_confidence": 0.96,
+    "session_id": "SESS_105",
+    "face_template": "FT_SARAHC_V1"
+  }
+]

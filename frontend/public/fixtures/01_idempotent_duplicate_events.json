@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_DUP_001",
+    "user_id": "USR_1001",
+    "source": "camera",
+    "timestamp": "2026-08-16T08:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.95,
+    "session_id": "SESS_101",
+    "face_template": "FT_JOHNDOE_V1"
+  },
+  {
+    "event_id": "EVT_DUP_001",
+    "user_id": "USR_1001",
+    "source": "camera",
+    "timestamp": "2026-08-16T08:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.95,
+    "session_id": "SESS_101",
+    "face_template": "FT_JOHNDOE_V1"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_ID_LOW_CONF",
+    "user_id": "USR_9999_NEW",
+    "source": "camera",
+    "timestamp": "2026-08-16T10:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.65,
+    "session_id": "SESS_104",
+    "face_template": "FT_UNKNOWN_SCAN"
+  },
+  {
+    "event_id": "EVT_ID_EXP_WINDOW",
+    "user_id": "USR_1003",
+    "source": "manual",
+    "timestamp": "2026-08-16T10:15:00Z",
+    "action": "checkin",
+    "face_confidence": 0.90,
+    "session_id": "SESS_104_EXP",
+    "face_template": "FT_ALEXJ_V1"
+  }
+]

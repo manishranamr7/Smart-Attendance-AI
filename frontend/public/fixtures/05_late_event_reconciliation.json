@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_LATE_CHECKIN",
+    "user_id": "USR_1001",
+    "source": "manual",
+    "timestamp": "2026-08-16T12:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.99,
+    "session_id": "SESS_105_LATE",
+    "face_template": "FT_JOHNDOE_V1"
+  },
+  {
+    "event_id": "EVT_LATE_CHECKOUT",
+    "user_id": "USR_1001",
+    "source": "camera",
+    "timestamp": "2026-08-16T17:30:00Z",
+    "action": "checkout",
+    "face_confidence": 0.95,
+    "session_id": "SESS_105_LATE",
+    "face_template": "FT_JOHNDOE_V1"
+  }
+]

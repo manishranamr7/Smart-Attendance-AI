@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_SRC_APP",
+    "user_id": "USR_1001",
+    "source": "app",
+    "timestamp": "2026-08-16T08:05:00Z",
+    "action": "checkin",
+    "face_confidence": 0.85,
+    "session_id": "SESS_103",
+    "face_template": "FT_JOHNDOE_V1"
+  },
+  {
+    "event_id": "EVT_SRC_CAM",
+    "user_id": "USR_1001",
+    "source": "camera",
+    "timestamp": "2026-08-16T08:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.98,
+    "session_id": "SESS_103",
+    "face_template": "FT_JOHNDOE_V1"
+  }
+]

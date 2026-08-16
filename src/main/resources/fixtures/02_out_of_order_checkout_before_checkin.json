@@ -1,0 +1,22 @@
+[
+  {
+    "event_id": "EVT_OOO_002_OUT",
+    "user_id": "USR_1002",
+    "source": "camera",
+    "timestamp": "2026-08-16T17:00:00Z",
+    "action": "checkout",
+    "face_confidence": 0.92,
+    "session_id": "SESS_102",
+    "face_template": "FT_JANESMITH_V1"
+  },
+  {
+    "event_id": "EVT_OOO_001_IN",
+    "user_id": "USR_1002",
+    "source": "camera",
+    "timestamp": "2026-08-16T09:00:00Z",
+    "action": "checkin",
+    "face_confidence": 0.96,
+    "session_id": "SESS_102",
+    "face_template": "FT_JANESMITH_V1"
+  }
+]
